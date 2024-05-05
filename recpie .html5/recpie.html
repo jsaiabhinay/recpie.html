@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+}
+
+.recipe-form input[type="text"],
+.recipe-form textarea {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.recipe-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.recipe-form button:hover {
+    background-color: #45a049;
+}
+
+.recipe-list {
+    margin-top: 20px;
+}
+
+.recipe-item {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Organizer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Recipe Organizer</h1>
+        <div class="recipe-form">
+            <input type="text" id="recipe-name" placeholder="Enter recipe name">
+            <textarea id="recipe-instructions" placeholder="Enter recipe instructions"></textarea>
+            <button onclick="addRecipe()">Add Recipe</button>
+        </div>
+        <div class="recipe-list" id="recipe-list">
+            <!-- Recipe items will be added here dynamically -->
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+
+function addRecipe() {
+    var recipeName = document.getElementById("recipe-name").value;
+    var recipeInstructions = document.getElementById("recipe-instructions").value;
+
+    if (recipeName && recipeInstructions) {
+        var recipeList = document.getElementById("recipe-list");
+
+        var recipeItem = document.createElement("div");
+        recipeItem.classList.add("recipe-item");
+
+        var nameElement = document.createElement("h2");
+        nameElement.textContent = recipeName;
+
+        var instructionsElement = document.createElement("p");
+        instructionsElement.textContent = recipeInstructions;
+
+        recipeItem.appendChild(nameElement);
+        recipeItem.appendChild(instructionsElement);
+
+        recipeList.appendChild(recipeItem);
+
+        // Clear input fields after adding recipe
+        document.getElementById("recipe-name").value = "";
+        document.getElementById("recipe-instructions").value = "";
+    } else {
+        alert("Please enter recipe name and instructions");
+    }
+}
+    </script>
+</body>
+</html>
